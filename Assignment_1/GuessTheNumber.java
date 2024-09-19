@@ -13,6 +13,7 @@ final class TestMeasures {
     List<Integer> steps = new ArrayList<Integer>();
 }
 
+// Provides Algorithmic Solution and Test Cases for 1.4.34 in the textbook
 public class GuessTheNumber {
     
     public static Metrics solve(int N, int num) {

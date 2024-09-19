@@ -1,12 +1,13 @@
 package Assignment_1;
 
-import java.util.*;
-import java.math.*;
+import java.util.ArrayList;
+import java.util.Arrays;
+import java.util.List;
 
-public class Solution {
+// Provides solution to the problem on 1.4.12 on the Algorithms textbook.
+public class CommonElements {
 
-    // This algorithm provides solution to the problem on 1.4.12 on the Algorithms textbook.
-    public static void commonElements(List<Integer> sorted_1, List<Integer> sorted_2) {
+    public static void findCommons(List<Integer> sorted_1, List<Integer> sorted_2) {
 
         int l1_size = sorted_1.size();
         int l2_size = sorted_2.size();
@@ -27,21 +28,10 @@ public class Solution {
         }
     }
 
-    public static void smallestLargest(List<Integer> list) {
-        int smallest = list.get(0);
-        int largest = list.get(0);;
-        for (int i=0;i<list.size();i++) {
-            int item = list.get(i);
-            smallest = (item  < smallest) ? item : smallest;
-            largest = (item > largest) ? item : largest;
-        }
-        System.out.println("Smallest in list: " + smallest + ", Largest in list: " + largest);
-    }
-
     public static void main(String[] args) {
         List<Integer> sorted_1 = new ArrayList<Integer>(Arrays.asList(1,1,2,3,5,8,8,9,11,15,18));
         List<Integer> sorted_2 = new ArrayList<Integer>(Arrays.asList(1,3,8,8,9,12,19));
-        commonElements(sorted_1, sorted_2);
-        smallestLargest(sorted_1);
+        findCommons(sorted_1, sorted_2);
     }
+
 }
