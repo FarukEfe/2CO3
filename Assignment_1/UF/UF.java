@@ -1,8 +1,8 @@
-package Assignment_1;
+package Assignment_1.UF;
 
 public class UF {
-    private int[] id; // List of all nodes @ id's
-    private int count; // Number of separate clusters/components
+    protected int[] id; // List of all nodes @ id's
+    protected int count; // Number of separate clusters/components
 
     // Initializer
     public UF(int N) {
@@ -22,10 +22,12 @@ public class UF {
     }
 
     public int find(int p) {
-        while (p != this.id[p]) p = id[p];
-        return p;
+        return this.id[p];
     }
 
+
+    // For the assignment purposes, you need to replace the minority cluster value with the majority. This is called "Weighted quick-union by height"
+    // Re-read the prompt to ensure you've properly understood the assignment question(s) (1.5.14, 1.5.15)
     public void union(int p, int q) {
         // Get value of id's p and q
         // Common values represent connections; two id's with same value in storage are connected to one another
@@ -37,15 +39,20 @@ public class UF {
         for (int i=0;i<this.id.length;i++) {
             if (this.id[i] == pID) this.id[i] = qID;
         }
-        this.count--;
+        this.count--; // Reduce total number of clusters by 1 (new merge)
     }
 
     public static void main(String[] args) {
         int N = 10;
         UF uf = new UF(N);
-        // Connect 1 to 5
+        // Make following connections
         uf.union(1,5);
         uf.union(2,3);
         uf.union(8,1);
     }
 }
+
+/*
+ * This application of UF data structure surely has a fast 'find' method. However, when we're dealing with bigger trees, union method slows down on a linear scale.
+ * 
+*/
