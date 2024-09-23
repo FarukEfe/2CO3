@@ -7,7 +7,15 @@ import java.util.List;
 public class WeightedQuickUnion extends UF {
     // We're going to keep track of depth at each id for optimizing the tree to shortest depth
     private List<Integer> depth = new ArrayList<Integer>();
-    public int getDepth(int p) { return this.depth.get(p); };
+    public List<Integer> listDepth() { return this.depth; };
+    public int getDepth(int p) {
+        int count = 0;
+        while (p != this.id[p]) {
+            count++;
+            p = this.id[p];
+        }
+        return count;
+    }
 
     // Construct superclass
     public WeightedQuickUnion(int N) {
@@ -19,13 +27,28 @@ public class WeightedQuickUnion extends UF {
     // "depth" variable helps us cold-update the depth at index p, which is helpful in the union operation
     @Override
     public int find(int p) {
-        int depth = 0;
+        //int depth = 0;
+        int original = p; // Keeps original index for depth calculation
         while (p != this.id[p]) {
             p = this.id[p];
-            depth++;
+            //depth++;
         }
-        this.depth.add(p, depth);
+        //this.depth.add(original, depth);
         return p;
+    }
+
+    public void displayPath(int p) {
+        String display = "";
+        while (p != this.id[p]) {
+            display +=  String.valueOf(p) + " -> ";
+            p = this.id[p];
+        }
+        display += String.valueOf(p);
+        System.out.println(display);
+    }
+
+    public void displayDirect(int p) {
+        System.out.println(this.id[p]);
     }
 
     // Override union method for QuickUnion implementation
@@ -51,16 +74,22 @@ public class WeightedQuickUnion extends UF {
 
     public static void main(String[] args) {
         WeightedQuickUnion uf = new WeightedQuickUnion(20);
-        // Making sure the depth methods work
-        int p_depth = uf.getDepth(4);
+        // Print statements b4
+        int p_depth = uf.getDepth(8);
+        boolean connected = uf.connected(3, 4);
+        System.out.println("Before:");
         System.out.println(p_depth);
+        System.out.println(connected);
         // Make some unions
-        uf.union(3,4);
-        uf.union(5,3);
-        uf.union(6,8);
-        uf.union(6, 11);
-        uf.union(6,4);
-        p_depth = uf.getDepth(6);
-        System.out.println(p_depth);
+        uf.union(3,5);
+        uf.union(3,2);
+        uf.union(6,2);
+        // Manually testing algorithm accuracy
+        uf.displayPath(3);
+        uf.displayPath(2);
+        uf.displayPath(6);
+        int depth = uf.getDepth(6);
+        int root = uf.find(6);
+        System.out.println("Depth of node 6 is: " + depth + " with root " + root);
     }
 }
