@@ -1,7 +1,6 @@
-package Assignment_1;
+package Assignment_1._1_4_34;
 
 import java.util.*;
-import java.math.*;
 
 final class Metrics {
     int steps = 0;
@@ -20,21 +19,26 @@ public class GuessTheNumber {
 
         int step_count = 0; int solved = 0;
         int max = N; int min = 1;
-
+        int guess = min;
         do {
             step_count++;
             int min_diff = Math.abs(num-min);
             int max_diff = Math.abs(num-max);
 
             if (min_diff == 0 || max_diff == 0) {
+                System.out.println("Found!!!");
                 solved = 1;
                 break;
             }
 
             if (min_diff > max_diff) {
+                System.out.println((guess == max) ? "Hotter" : "Colder");
                 min = Math.round((max+min) / 2) + 1;
+                guess = min;
             } else {
+                System.out.println((guess == min) ? "Hotter" : "Colder");
                 max = Math.round((max+min) / 2);
+                guess = max;
             }
         } while (max > min);
 
@@ -73,7 +77,8 @@ public class GuessTheNumber {
     
     public static void main(String[] args) {
 
-        //customTest(50, 28);
-        TestMeasures tests_result = test(100000);
+        Metrics result = solve(80, 58);
+        System.out.println((result.solved == 1) ? "Solved in " + result.steps + " steps" : "Couldn't find a solution.");
+        //TestMeasures tests_result = test(100000);
     }   
 }

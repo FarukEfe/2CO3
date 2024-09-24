@@ -1,6 +1,5 @@
-package Assignment_1.UF;
+package Assignment_1._1_5_14;
 
-import java.util.*;
 // In the QuickUnion approach to UF data structure and its operations. We interpret the data a little differently.
 // In this structure, each site p (represents id) holds value id[p] that refers to its connected site q (represents id).
 // The base site of id "p" will contain the id of itself (p == id[p]), in which case we have found the common value of all connected sites.

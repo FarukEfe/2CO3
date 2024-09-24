@@ -1,4 +1,4 @@
-package Assignment_1.UF;
+package Assignment_1._1_5_14;
 
 import java.util.ArrayList;
 import java.util.Collections;
@@ -27,13 +27,9 @@ public class WeightedQuickUnion extends UF {
     // "depth" variable helps us cold-update the depth at index p, which is helpful in the union operation
     @Override
     public int find(int p) {
-        //int depth = 0;
-        int original = p; // Keeps original index for depth calculation
         while (p != this.id[p]) {
             p = this.id[p];
-            //depth++;
         }
-        //this.depth.add(original, depth);
         return p;
     }
 

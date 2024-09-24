@@ -1,4 +1,4 @@
-package Assignment_1.UF;
+package Assignment_1._1_5_14;
 
 public class UF {
     protected int[] id; // List of all nodes @ id's

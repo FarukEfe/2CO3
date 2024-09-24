@@ -1,7 +1,6 @@
-package Assignment_1;
+package Assignment_1._1_3_45;
 
 import java.util.*;
-import java.math.*;
 
 public class StackGenerability {
     
