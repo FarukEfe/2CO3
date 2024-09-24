@@ -93,7 +93,7 @@ public class WeightedQuickUnion extends UF {
         // These are all supposed to return the max depth of the connected tree (root 5 in our case)
         // They're all going to return the same value
         System.out.println("Depth of node #6: "+ uf.getDepth(6));
-        System.out.println("Depth of node #13: "+ uf.getDepth(13)); 
+        System.out.println("Depth of node #13: "+ uf.getDepth(13));
         System.out.println("Depth of node #12: "+ uf.getDepth(12)); 
         System.out.println("Depth of node #11: "+ uf.getDepth(11));
     }

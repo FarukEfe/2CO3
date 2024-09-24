@@ -1,24 +1,26 @@
 package Assignment_1._1_4_17;
 
-import java.util.ArrayList;
-import java.util.Arrays;
-import java.util.List;
-
 public class SmallestLargest {
-    
-    public static void smallestLargest(List<Integer> list) {
-        int smallest = Math.abs(list.get(0));
-        int largest = Math.abs(list.get(0));
-        for (int i=0;i<list.size();i++) {
-            int item = Math.abs(list.get(i));
+    /*
+    . Print the pair of numbers with the biggest absolute value difference
+    . Absolute value means that it doesn't matter which number gets subtracted, as long as the distance 
+      between is the largest out of all potential pairs.
+    . Intuitively, that would be the difference between the smallest and largest numbers in the list.
+    */
+    public static void smallestLargest(double[] list) {
+        double smallest = list[0];
+        double largest = list[0];
+        for (int i=0;i<list.length;i++) {
+            double item = list[i];
             smallest = (item  < smallest) ? item : smallest;
             largest = (item > largest) ? item : largest;
         }
         System.out.println("Smallest in list: " + smallest + ", Largest in list: " + largest);
+        System.out.println("The farthest pair found in the list is: (" + smallest + ", " + largest + ").");
     }
 
     public static void main(String[] args) {
-        List<Integer> sorted_1 = new ArrayList<Integer>(Arrays.asList(1,1,2,-6,5,8,99,9,18,15,17));
-        smallestLargest(sorted_1);
+        double[] list = {1,1,2,-6,5,8,99,9,18,15,17};
+        smallestLargest(list);
     }
 }
