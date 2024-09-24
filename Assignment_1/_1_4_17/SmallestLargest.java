@@ -7,10 +7,10 @@ import java.util.List;
 public class SmallestLargest {
     
     public static void smallestLargest(List<Integer> list) {
-        int smallest = list.get(0);
-        int largest = list.get(0);;
+        int smallest = Math.abs(list.get(0));
+        int largest = Math.abs(list.get(0));
         for (int i=0;i<list.size();i++) {
-            int item = list.get(i);
+            int item = Math.abs(list.get(i));
             smallest = (item  < smallest) ? item : smallest;
             largest = (item > largest) ? item : largest;
         }
