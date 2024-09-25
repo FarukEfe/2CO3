@@ -2,9 +2,13 @@ package Assignment_1._1_4_34;
 
 import java.util.*;
 
-final class Metrics {
-    int steps = 0;
-    int solved = 0;
+final class Solution {
+    int steps;
+    boolean solved;
+
+    public Solution(int steps, boolean solved) {
+        this.steps = steps; this.solved = solved;
+    }
 }
 
 final class TestMeasures {
@@ -14,10 +18,18 @@ final class TestMeasures {
 
 // Provides Algorithmic Solution and Test Cases for 1.4.34 in the textbook
 public class GuessTheNumber {
-    
-    public static Metrics solve(int N, int num) {
 
-        int step_count = 0; int solved = 0;
+    // MARK: SOLUTION
+    
+    /*
+    - Initial guess is 1 and the next guess is N
+    - If next guess is closer to answer than the previous (a.k.a Hotter), pull previous guess up/down to half the
+      guess range.
+    - Repeat the same process until a solution is found, or max > min (which means no solution).
+    */
+    public static Solution solve(int N, int num, boolean message) {
+
+        int step_count = 0; boolean solved = false;
         int max = N; int min = 1;
         int guess = min;
         do {
@@ -27,34 +39,34 @@ public class GuessTheNumber {
 
             if (min_diff == 0 || max_diff == 0) {
                 System.out.println("Found!!!");
-                solved = 1;
+                solved = true;
                 break;
             }
 
             if (min_diff > max_diff) {
-                System.out.println((guess == max) ? "Hotter" : "Colder");
+                if (message) System.out.println((guess == max) ? "Hotter" : "Colder");
                 min = Math.round((max+min) / 2) + 1;
                 guess = min;
             } else {
-                System.out.println((guess == min) ? "Hotter" : "Colder");
+                if (message) System.out.println((guess == min) ? "Hotter" : "Colder");
                 max = Math.round((max+min) / 2);
                 guess = max;
             }
         } while (max > min);
 
-        Metrics prf = new Metrics();
-        prf.steps = step_count;
-        prf.solved = solved;
+        Solution prf = new Solution(step_count, solved);
         return prf;
     }
+
+    // MARK: TESTING
 
     public static TestMeasures test(int up_to) {
         List<Long> time_list = new ArrayList<Long>();
         List<Integer> steps_list = new ArrayList<Integer>();
-        for (int N=1;N<up_to;N++) {
+        for (int N=1;N<up_to + 1;N++) {
             // Measure execution time & get duration
             final long start = System.currentTimeMillis();
-            Metrics result = solve(N, N+1);
+            Solution result = solve(N, N+1, false);
             final long end = System.currentTimeMillis();
             final long duration = end - start;
             // Print statement
@@ -70,15 +82,17 @@ public class GuessTheNumber {
     }
 
     public static void customTest(int N, int num) {
-        Metrics res = solve(N, num);
-        String statement = (res.solved == 1) ? "Guess #" + num + " found in " + res.steps + " steps." : "No solution found.";
+        Solution res = solve(N, num, true);
+        String statement = (res.solved) ? "Guess #" + num + " found in " + res.steps + " steps." : "No solution found.";
         System.out.println(statement);
     }
+
+    // MARK: MAIN
     
     public static void main(String[] args) {
 
-        Metrics result = solve(80, 58);
-        System.out.println((result.solved == 1) ? "Solved in " + result.steps + " steps" : "Couldn't find a solution.");
-        //TestMeasures tests_result = test(100000);
+        Solution result = solve(100, 49, true);
+        System.out.println((result.solved) ? "Solved in " + result.steps + " steps" : "Couldn't find a solution.");
+        TestMeasures __ = test(100000);
     }   
 }
