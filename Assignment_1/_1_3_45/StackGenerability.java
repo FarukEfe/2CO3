@@ -1,55 +1,36 @@
 package Assignment_1._1_3_45;
 
-import java.util.*;
-
 public class StackGenerability {
-    
-    // 0 represents pop, 1 represents push
-    public static List<Integer> makeSequence(int N) {
-        int n_push = N; int n_pop = N; int length = 2 * N;
 
-        List<Integer> sequence = new ArrayList<Integer>();
-        for (int i=0;i<length;i++) {
-            
-            int rand = (Math.random() < 0.5) ? 0 : 1;
-            if (n_push == 0) {
-                rand = 0;
-            } else if (n_pop == 0) {
-                rand = 1;
-            }
-
-            sequence.add(rand);
-            if (rand == 0) {
-                n_pop--;
-            } else {
-                n_push--;
-            }
-        }
-        return sequence;
-    }
-
-    // Sequence represents push/pull directives as 1/0
     // Returns 0 if stack underflows, 1 otherwise
-    public static int checkGenerability(List<Integer> sequence) {
-
+    // N represents total number of directives for push and pop, each.
+    public static int checkGenerability(int N) {
+        // Initialized N push and N pop directives & total number of directives is 2 * N
+        int n_push = N; int n_pop = N; int length = 2 * N;
+        // Variable to emulate stack length
         int stack_len = 0;
-        for (int i=0;i<sequence.size();i++) {
-            int item = sequence.get(i);
-
-            stack_len = (item == 1) ? stack_len + 1 : stack_len - 1;
+        for (int i=0;i<length;i++) {
+            // Randomly choose to push or pop (push = 1 and pop = 0)
+            int rand = (Math.random() < 0.5) ? 0 : 1;
+            // Update stack_length based on the push or pop directive
+            stack_len = (rand == 1) ? stack_len + 1 : stack_len - 1;
+            // Update remaining push and pop directives
+            n_push = (rand == 1) ? n_push - 1 : n_push;
+            n_pop = (rand == 0) ? n_pop - 1 : n_pop;
 
             if (stack_len < 0) {
+                System.out.println("push performed is " + (N - n_push) + " and pop performed is " + (N-n_pop));
                 return 0;
             }
         }
+        System.out.println("push performed is " + (N - n_push) + " and pop performed is " + (N-n_pop));
         return 1;
     }
+    // A basic iteration loop, giving it a time complexity of O(N)
 
     public static void main(String[] args) {
-        int N = 2;
-        List<Integer> random_sequence = makeSequence(N);
-        int generatable = checkGenerability(random_sequence);
-        System.out.println("For sequence of lenght " + N + " being generated as:\n" + random_sequence + "\n");
+        int N = 20;
+        int generatable = checkGenerability(N);
         System.out.println("The generability status of this stack sequence is: " + generatable);
     }
 }
