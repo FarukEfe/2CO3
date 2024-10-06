@@ -1,4 +1,4 @@
-package Assignment_1._1_5_14;
+package A1._1_5_14;
 
 
 // 'UF' is a very fundamental representation of Union Find Tree Structure.

@@ -1,11 +1,11 @@
-package Assignment_1._1_4_17;
+package A1._1_4_17;
 
 public class SmallestLargest {
     /*
     . Print the pair of numbers with the biggest absolute value difference
-    . Absolute value means that it doesn't matter which number gets subtracted, as long as the distance 
-      between is the largest out of all potential pairs.
+    . Absolute value means that it doesn't matter which number gets subtracted, as long as the distance between is the largest out of all potential pairs.
     . Intuitively, that would be the difference between the smallest and largest numbers in the list.
+    . The algorithm only has to run through the list once to ensure we pick the largest and smallest numbers, which gives us a time complexity of O(n)
     */
     public static void smallestLargest(double[] list) {
         double smallest = list[0];

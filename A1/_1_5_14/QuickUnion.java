@@ -1,4 +1,4 @@
-package Assignment_1._1_5_14;
+package A1._1_5_14;
 
 // In the QuickUnion approach to UF data structure and its operations. We interpret the data a little differently.
 // In this structure, each site p (represents id) holds value id[p] that refers to its connected site q (represents id).

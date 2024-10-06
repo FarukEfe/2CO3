@@ -1,4 +1,4 @@
-package Assignment_1._1_4_34;
+package A1._1_4_34;
 
 import java.util.*;
 
@@ -21,15 +21,10 @@ public class GuessTheNumber {
 
     // MARK: SOLUTION
     
-    /*
-    - Initial guess is 1 and the next guess is N
-    - If next guess is closer to answer than the previous (a.k.a Hotter), pull previous guess up/down to half the
-      guess range.
-    - Repeat the same process until a solution is found, or max > min (which means no solution).
-    */
     public static Solution solve(int N, int num, boolean message) {
 
         int step_count = 0; boolean solved = false;
+        // Initial guess is 1 and the next guess is N
         int max = N; int min = 1;
         int guess = min;
         do {
@@ -42,7 +37,8 @@ public class GuessTheNumber {
                 solved = true;
                 break;
             }
-
+            // If next guess is closer to answer than the previous (a.k.a Hotter), pull previous guess up/down to half the guess range.
+            // We assign a new guess only once per loop, which gives us log2(N) guesses in the worst case 
             if (min_diff > max_diff) {
                 if (message) System.out.println((guess == max) ? "Hotter" : "Colder");
                 min = Math.round((max+min) / 2) + 1;

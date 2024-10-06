@@ -1,4 +1,4 @@
-package Assignment_1._1_3_45;
+package A1._1_3_45;
 
 public class StackGenerability {
 

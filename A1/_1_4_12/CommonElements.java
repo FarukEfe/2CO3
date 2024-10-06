@@ -1,4 +1,4 @@
-package Assignment_1._1_4_12;
+package A1._1_4_12;
 
 // Provides solution to the problem on 1.4.12 on the Algorithms textbook.
 public class CommonElements {

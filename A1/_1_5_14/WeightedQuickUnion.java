@@ -1,4 +1,4 @@
-package Assignment_1._1_5_14;
+package A1._1_5_14;
 
 import java.util.ArrayList;
 import java.util.Collections;
