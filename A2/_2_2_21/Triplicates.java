@@ -37,8 +37,17 @@ public class Triplicates {
             String item_1 = l1[i_1];
             String item_2 = l2[i_2];
             String item_3 = l3[i_3];
-
+            // If strings are equal, return
+            if (item_1 == item_2 && item_2 == item_3) {
+                return item_1;
+            }
+            // Increase index of smaller entries
+            String greatest = this.greatest(item_1, item_2, item_3);
+            i_1 = (item_1 == greatest) ? i_1 : i_1 + 1;
+            i_2 = (item_2 == greatest) ? i_2 : i_2 + 1;
+            i_3 = (item_3 == greatest) ? i_3 : i_3 + 1;
         }
+
         return "";
     }
 
