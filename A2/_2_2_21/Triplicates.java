@@ -13,7 +13,13 @@ public class Triplicates {
      * Our assumption is that l1, l2, and l3 are all sorted lists at this point.
      */
     public String encounter(String[] l1, String[] l2, String[] l3) {
-        
+
+        MSThreeWay ms = Triplicates.ms;
+
+        ms.mergesort(l1,0,l1.length);
+        ms.mergesort(l2,0,l2.length);
+        ms.mergesort(l3,0,l3.length);
+
         int i_1 = 0;
         int i_2 = 0;
         int i_3 = 0;
@@ -35,15 +41,6 @@ public class Triplicates {
         return "";
     }
 
-    public String solve(String[] l1, String[] l2, String[] l3) {
-        MSThreeWay ms = Triplicates.ms;
-        l1 = ms.mergesort(l1);
-        l2 = ms.mergesort(l2);
-        l3 = ms.mergesort(l3);
-        System.out.println(l1); System.out.println(l2); System.out.println(l3);
-        return this.encounter(l1, l2, l3);
-    }
-
     public static void main(String[] args) {
         Triplicates solution = new Triplicates();
 
@@ -51,7 +48,7 @@ public class Triplicates {
         String[] example2 = {"adhige","Haa","not","adhe", "stpd"};
         String[] example3 = {"Haha","ll","not","adhige"};
 
-        String result = solution.solve(example1, example2, example3);
+        String result = solution.encounter(example1, example2, example3);
         System.out.println(result);
     }
 }
